@@ -1,8 +1,9 @@
 /**
- * TODO: Implement basic result logic.
+ * TODO:Implement basic result logic.
  *          itemTick = 0 : "Please enter data first"
  *          0 < itemTick <= 3 : "Enjoy!"
  *          3 < itemTick: "Too much!"
+ *      Implement minification protection for dependency injection.
  */
 
 (function (){ 
@@ -12,10 +13,11 @@
         .module('lunchChecker', [])
         .controller('lunchCheckController', lunchCheckController);
 
-    function lunchCheckController ($scope, $filter) {
+    
+    processList.$inject = ['$scope']; //Minification protection
+    function lunchCheckController ($scope) {
         $scope.lunchList = "";
         $scope.outputMessage = "";
-
         $scope.processList = function (){
             var splitLunchList = $scope.lunchList.split(',');
             var itemTick = 0;
