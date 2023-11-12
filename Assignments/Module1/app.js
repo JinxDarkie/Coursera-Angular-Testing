@@ -1,8 +1,5 @@
 /**
- * TODO:Implement basic result logic.
- *          itemTick = 0 : "Please enter data first"
- *          0 < itemTick <= 3 : "Enjoy!"
- *          3 < itemTick: "Too much!"
+ * TODO:
  *      Implement minification protection for dependency injection.
  */
 
@@ -18,17 +15,27 @@
     function lunchCheckController ($scope) {
         $scope.lunchList = "";
         $scope.outputMessage = "";
+
         $scope.processList = function (){
+            if($scope.lunchList==""){
+                $scope.outputMessage="Please enter data first.";
+                return;
+            }
+
             var splitLunchList = $scope.lunchList.split(',');
             var itemTick = 0;
 
             splitLunchList.forEach(menuItem => {
-                if(menuItem!=""){
+                if(!menuItem.trim().length){ //Check to ensure item isn't empty/whitespace
                     itemTick++;
                 }
             });
 
-            $scope.outputMessage="Testing testing";
+            if(itemTick <= 3) {
+                $scope.outputMessage="Enjoy!";
+            } else {
+                $scope.outputMessage="Too much!";
+            }
         }
     }
 
