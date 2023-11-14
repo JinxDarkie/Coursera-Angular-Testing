@@ -11,6 +11,8 @@
         <div ng-controller="controllerExample">
             {{sampleText}} <br />
             Length of {{sampleText}}: {{sampleLength}}
+
+
             <br /><br />
             Example Input: 
             <input type="text" 
@@ -18,6 +20,28 @@
                 ng-keyup="displayLength();">
             <br>OUTPUT: {{inputText}}
             <br>Length of "{{inputText}}": {{inputLength}}
+        </div>
+
+        <div ng-controller="separateControllerExample">
+
+            Type here to search in the list!
+            <input type="text" ng-model="search">
+            <h3>shop list</h3>
+            <ul>
+                <li ng-repeat="item in shoppingList | filter: search" 
+                    style="list-style-type: none;">
+                    {{ $index + 1 }}. {{ item.stock }} {{ item.name }}s
+                </li>
+            </ul>
+
+            <h3> filtered shoplist</h3>
+            <ul>
+                <li ng-repeat="item in filteredList" 
+                    style = "list-style-type: none;">
+                    {{ $index + 1 }}. {{ item.stock }} {{ item.name }}s
+                </li>
+            </ul>
+            
         </div>
         <br><br><a href="Assignments/assignmentPortal.html">Link to assignments</a>
     </body>
