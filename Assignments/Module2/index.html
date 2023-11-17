@@ -1,0 +1,48 @@
+<!doctype html>
+
+<html lang="en" ng-app="shoppingListCheckoff">
+<head>
+  <title>Shopping List Checkoff</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../../angular.min.js"></script>
+  <script src="app.js"></script>
+  <link rel="stylesheet" href="../../bootstrap.min.css">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <div class="container-fluid">-
+    <h1>Ye Olde Nonsense Shoppe</h1>
+    <div class="row">
+      <ul ng-controller="ToBuyController as Stock" class="col-sm-6">
+          <h2>In Stock</h2>
+          <li ng-if="!Stock.shoppingList.length">Out of stock...</li>
+          <li ng-repeat="obj in Stock.shoppingList track by obj.item" class="row">
+            <p class="col-sm-4">{{obj.item}} 
+            <p class="col-sm-4">({{obj.pricePer.cost | currency}} 
+              per {{obj.pricePer.batch}})</p>
+            <p class="col-sm-4">{{obj.stock}} in stock!</p>
+
+            <button class="col-sm-12"
+                    ng-click="Stock.purchase(obj.item, obj.stock)">
+              Buy all!
+            </button>
+          </li>
+      </ul>
+      <ul ng-controller="AlreadyBoughtController as Bought" class="col-sm-6">
+          <h2>Bought</h2>
+          <li ng-if="!Bought.boughtList.length">Nothing bought yet...</li>
+          <li ng-repeat="obj in Bought.boughtList track by obj.item" class="row">
+            <p class="col-sm-8">Purchasing {{obj.stock}} {{obj.item}} for {{obj.stock * obj.pricePer.cost | currency}}</p>
+            <button class="col-sm-4"
+              ng-click="Bought.cancel(obj.item, obj.stock)">
+              Cancel purchase
+            </button>
+          </li>
+      </ul>
+    </div>
+    <div class="row col-sm-6 col-sm-push-6">
+      TOTAL COST TALLY: [PLACEHOLDER]
+    </div>
+  </div>
+</body>
+</html>
