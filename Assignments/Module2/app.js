@@ -144,6 +144,7 @@ CONTROLLER - Interfaces with services for HTML to hook onto
 
         buyControl.purchase = function (itemName, amount){
             shop.buy(itemName, amount);
+            buyControl.shoppingList = shop.fetchStock();
         };
     };
 
@@ -158,6 +159,7 @@ CONTROLLER - Interfaces with services for HTML to hook onto
 
         boughtControl.cancel = function (itemName, amount){
             shop.cancel(itemName, amount);
+            boughtControl.boughtList = shop.fetchBought();
         }
     };
 

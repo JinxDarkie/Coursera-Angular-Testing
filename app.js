@@ -15,7 +15,9 @@ wasting resources. The angular.min file uses it too.*/
     variables you attach to it to be accessible to whatever element the
     .controller() is bound to (In this case 'controllerExample'). The
     children of that element can then access that data.*/
-    app.controller('controllerExample', function ($scope) {
+    //Note how this includes dependency injection (Putting the function within
+    //a [] with '$scope') to protect against minification errors.
+    app.controller('controllerExample', ['$scope', function ($scope) {
         $scope.sampleText = "hello world!";
 
         $scope.inputText = "";
@@ -23,12 +25,12 @@ wasting resources. The angular.min file uses it too.*/
         $scope.displayLength = function(){
             $scope.inputLength = $scope.inputText.length;
         }
-    });
+    }]);
 
     //Since this is a separate controller, it has its own $scope within the
     //context of the element this is attached to. This means it can't call
     //scope vars/funcs from above and vice versa.
-    app.controller('separateControllerExample', function($scope){
+    app.controller('separateControllerExample', ['$scope', function($scope){
         $scope.shoppingList = [
             {name: "car", stock: 2},
             {name: "truck", stock: 1},
@@ -44,6 +46,6 @@ wasting resources. The angular.min file uses it too.*/
                 return value;
             }
         });
-    });
-
+    }]);
+    //TODO: Implement an async http request example.
 })();

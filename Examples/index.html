@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en" ng-app="examplesApp">
+<head>
+  <title>Narrow Down Your Menu Choice</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../angular.min.js"></script>
+  <script src="app.js"></script>
+</head>
+<body>
+    <h1>Async and HTTP request examples</h1>
+    <p>
+        If this input is over 5 characters and contains the word "happy" when 
+        button clicked, this will say 'yay!',
+        otherwise it will say 'aww...'
+    </p>
+    <div ng-controller="asyncTextCheck as check">
+        <h3>async example</h3>
+        <input type="text"
+            ng-model="check.inputText">
+        <button ng-click="check.checkInput();">Click me!</button>
+        <p>{{resultText}}</p>
+    </div>
+
+    <br><br>
+    <div>
+        <h3>http request example</h3>
+        <p>
+            Your input will search another server's returned json file for anything
+            containing your input (We're using a server Yaakov has handy here).
+        </p>
+        <input type="text" placeholder="This will search json!">
+        <button>Search!</button>
+        <ul></ul>
+    </div>
+</body>
+</html>
