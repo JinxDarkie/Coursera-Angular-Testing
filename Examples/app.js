@@ -18,7 +18,9 @@
     'use strict'; 
     angular.module('examplesApp', [])
         .service('exampleService',exampleService)
-        .controller('asyncTextCheck',asyncTextCheck);
+        .controller('asyncTextCheck',asyncTextCheck)
+        .service('httpServer',httpServer)
+        .controller('httpController',httpController);
 
     exampleService.$inject=['$q','$timeout'];
     function exampleService($q, $ti){
@@ -148,6 +150,47 @@
                  */
                 $sc.resultText = service.resultText;
             });
+        };
+    };
+
+    httpServer.$inject=['$q','$http'];
+    function httpServer($q,$http){
+        var service=this;
+        service.menuList={};
+
+        service.promiseHTTP= function(search){
+            let result={};
+
+            result=$http({
+                method: "GET",
+                url: "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items.json"
+            });
+
+            service.menuList = result;
+            return result;
+        };
+        service.serveHTTP=function(search){
+            let deferred=$q.defer();
+            let result={};
+        };
+    };
+
+    httpController.$inject=['httpServer','$scope'];
+    function httpController(service,$sc){
+        $sc.menuList=service.menuList;
+        $sc.searchInput="";
+        $sc.searchFailed=false;
+        
+        $sc.serveSearch=function(){
+            service.promiseHTTP($sc.searchInput)
+                .then((response)=>{
+                    $sc.searchFailed=false;
+                    $sc.menuList=service.menuList;
+                })
+                .catch((errResponse)=>{
+                    $sc.searchFailed=true;
+                    console.log(errResponse.status);
+                });
         };
     };
 
