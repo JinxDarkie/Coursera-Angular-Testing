@@ -20,7 +20,8 @@
         .service('exampleService',exampleService)
         .controller('asyncTextCheck',asyncTextCheck)
         .service('httpServer',httpServer)
-        .controller('httpController',httpController);
+        .controller('httpController',httpController)
+        .constant('baseURLPath',"https://coursera-jhu-default-rtdb.firebaseio.com");
 
     exampleService.$inject=['$q','$timeout'];
     function exampleService($q, $ti){
@@ -153,20 +154,36 @@
         };
     };
 
-    httpServer.$inject=['$q','$http'];
-    function httpServer($q,$http){
+    httpServer.$inject=['$q','$http','baseURLPath'];
+    function httpServer($q,$http,baseURL){
         var service=this;
         service.menuList={};
 
-        service.promiseHTTP= function(search){
+        service.promiseHTTP= function(name){
             let result={};
 
-            result=$http({
+            /**This is basically how you handle HTTP requests. There is a
+             * params option but I don't quite yet comprehend *how* you use it.
+             * As far as I understand, it's effectively server-dependant, and
+             * you'll need to refer to server-side documentation to figure out
+             * how to request for something specific from the server.
+             * 
+             * For now, we're just gonna work with fetching the *entire* json
+             * and filtering it down clientside.
+             */
+            result = 
+            $http({
                 method: "GET",
-                url: "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items.json"
+                url: (baseURL+"/menu_items.json"),
+                params: {
+                    category: name
+                }
+            })
+            .then((response)=>{
+                    service.menuList = response.data;
+                    console.log(service.menuList);
             });
 
-            service.menuList = result;
             return result;
         };
         service.serveHTTP=function(search){

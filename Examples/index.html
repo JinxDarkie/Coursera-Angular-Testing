@@ -31,13 +31,13 @@
         <input type="text" 
             placeholder="This will search json!"
             ng-model="searchInput">
-        <button ng-click="serveSearch();">Search!</button>
+        <button ng-click="serveSearch();">Fetch the menu</button>
         <ul>
             <li ng-if="searchFailed">
                 <h5>ERR: HTTP Fetch Failed!</h5>
             </li>
             <li ng-repeat="item in menuList">
-                <h5>{{item.category}}</h5>
+                <h5>{{item.category.name}}</h5>
             </li>
         </ul>
     </div>
