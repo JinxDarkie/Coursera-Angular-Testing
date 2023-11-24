@@ -1,0 +1,23 @@
+<ul>
+    <li ng-repeat="group in found"
+        class="col-xs-12">
+        <h3>({{group.category.short_name}}) {{group.category.name}}</h3>
+        <ul>
+            <li ng-repeat="item in group.menu_items"
+                class="col-sm-4 col-xs-6">
+                <h4>({{item.short_name}}) {{item.name}}</h4>
+                <button
+                    ng-click="onRemove(item.short_name);">
+                    I don't want this!
+                </button>
+                <h6>
+                    {{item.small_portion_name}} {{item.price_small|currency}}
+                </h6>
+                <h6>
+                    {{item.large_portion_name}} {{item.price_large|currency}}
+                </h6>
+                <p>{{item.description}}</p>
+            </li>
+        </ul>
+    </li>
+</ul>

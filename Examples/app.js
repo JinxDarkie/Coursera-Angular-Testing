@@ -186,10 +186,6 @@
 
             return result;
         };
-        service.serveHTTP=function(search){
-            let deferred=$q.defer();
-            let result={};
-        };
     };
 
     httpController.$inject=['httpServer','$scope'];

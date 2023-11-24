@@ -5,6 +5,13 @@ input[type="text"] {
   width: 200px;
   float: left;
 }
+div > ul {
+  margin-top: 80px;
+
+}
+li{
+  list-style: none;
+}
 .narrow-button {
   float: left;
   margin-left: 10px;
