@@ -3,8 +3,8 @@
 <ul>
     <li ng-repeat="menuItem in control.menuData.menu_items">
         <h3>
-            {{menuItem.name}} ({{menuItem.large_portion_name}} {{menuItem.price_large}} 
-            {{menuItem.small_portion_name}} {{menuItem.price_small}})
+            {{menuItem.name}} ({{menuItem.large_portion_name}} {{menuItem.price_large | currency}} 
+            {{menuItem.small_portion_name}} {{menuItem.price_small | currency}})
         </h3>
         <p>
             {{menuItem.description}}
