@@ -1,0 +1,8 @@
+<h1>Restaurant Menu Categories</h1>
+<button ui-sref="home">home</button>
+<ul>
+    <li ng-repeat="category in control.categories">
+        <button ui-sref="items({categoryShortName:category.short_name})">
+            {{category.name}}</button>
+    </li>
+</ul>

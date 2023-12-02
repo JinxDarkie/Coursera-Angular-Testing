@@ -1,0 +1,13 @@
+<h1>{{control.menuData.category.name}}</h1>
+<button ui-sref="categories">return</button> <button ui-sref="home">home</button>
+<ul>
+    <li ng-repeat="menuItem in control.menuData.menu_items">
+        <h3>
+            {{menuItem.name}} ({{menuItem.large_portion_name}} {{menuItem.price_large}} 
+            {{menuItem.small_portion_name}} {{menuItem.price_small}})
+        </h3>
+        <p>
+            {{menuItem.description}}
+        </p>
+    </li>
+</ul>

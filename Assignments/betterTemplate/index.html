@@ -1,0 +1,27 @@
+<!--USE THIS TEMPLATE FROM NOW ON FOR NEW ANGULARJS APPS. This is literally
+  far better (Since it properly shows how to set up a component-based 
+  architecture). It aint perfect though-- you'll need to find some way to
+  dynamically import the components via bundling at some point.-->
+
+<!doctype html>
+<html lang="en" ng-app="examplesApp">
+<head>
+  <title>A Cleaner WebApp</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Libs-->
+    <script src="../angular.min.js"></script>
+    
+    <!--Root Component-->
+    <script src="index.js"></script>
+
+    <!--Example Component + Artifacts-->
+    <script src="components/example.component.js"></script>
+    <script src="components/example.component.service.js"></script>
+</head>
+<body>
+<div ng-controller="exampleController as ctrl">
+    <button ng-click="ctrl.exampleMethod();">Click me!</button>
+</div>
+</body>
+</html>

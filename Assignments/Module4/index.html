@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en" ng-app="menuApp">
+<head>
+  <title>Module 4 Assignment</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Libs-->
+    <script src="../../angular.min.js"></script>
+    <script src="//unpkg.com/angular-ui-router@0.3.1/release/angular-ui-router.js"></script>
+
+    <!--Modules-->
+    <script src="components/menuData/menuData.module.js"></script>
+    <script src="menuApp.module.js"></script>
+
+    <!--Artifacts-->
+    <!--menuApp-->
+    <script src="components/menu.component.js"></script>
+    <script src="components/router.js"></script>
+    <script src="components/categoryItems.component.js"></script>
+    <!--menuData-->
+    <script src="components/menuData/menuData.service.js"></script>
+</head>
+<body>
+  <ui-view></ui-view>
+</body>
+</html>

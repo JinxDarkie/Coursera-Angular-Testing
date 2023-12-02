@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" ng-app="examplesApp">
+<head>
+  <title>A Cleaner WebApp</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Libs-->
+    <script src="../angular.min.js"></script>
+    <script src="//unpkg.com/angular-ui-router@0.3.1/release/angular-ui-router.js"></script>
+
+    <!--Root Component-->
+    <script src="index.js"></script>
+
+    <!--Routing-->
+    <script src="components/example.routing.js"></script>
+
+    <!--Example Component + Artifacts-->
+    <script src="components/example.component.js"></script>
+    <script src="components/example.component.service.js"></script>
+    <script src="components/routing.controller.js"></script>
+</head>
+<body>
+<div ng-controller="exampleController as ctrl">
+    
+    <button ng-click="ctrl.exampleMethod();">Click me!</button>
+
+
+    <br>
+    <!--Notice how ui-sref stuff CAN be used in things other than <a>
+      ui-sref-active basically states what CSS class tag is applied when
+      the state is active.-->
+    <h4>Example Simple Routing (Minimal JS)</h4>
+    <a ui-sref="exampleStateHello" ui-sref-active="activeTab">Hello!</a>
+    <button ui-sref="exampleStateWorld" ui-sref-active="activeTab">World!</button>
+    <br>
+    <ui-view></ui-view>
+
+    <br><br>
+    <h4>Example Controller-injected Routing</h4>
+    <button ui-sref="scream" ui-sref-active="activeTab">Screm.</button>
+    
+</div>
+</body>
+</html>
